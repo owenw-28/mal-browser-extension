@@ -1,1 +1,1 @@
-# mal_browser_extension
+# Myanimelist Search Browser Extension
