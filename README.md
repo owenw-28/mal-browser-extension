@@ -1,1 +1,1 @@
-# Myanimelist Search Browser Extension
+# MyAnimelist Search Browser Extension
