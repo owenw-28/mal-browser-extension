@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "MAL Search Extension",
+    "version": "1.0",
+    "permissions": ["activeTab", "scripting"],
+    "host_permissions": ["https://api.myanimelist.net/"],
+    "background": {
+        "service_worker": "src/js/background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["src/js/content.js"]
+        }
+    ]
+}
