@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: url(../images/anime.jpg) no-repeat center center;
+    background-size: cover; 
+    transition: all ease 0.5s;
+}
+.label {
+    width: 200px;
+    height: 60px;
+    display: inline-block;
+    border: 4px solid #FFFFFF;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+}
+.checkbox {
+    display: none;
+}
+.span {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    background: #FFFFFF;
+    border-radius: 50%;
+    margin: 5px;
+    position: absolute;
+    left: 0;
+    transition: all ease 0.5s;
+}
+.label .checkbox:checked ~ .span {
+    left: 140px;
+}
+.mangaBackground {
+    background: url(../images/manga.png) no-repeat center center;
+    background-size: cover;
+}
+.mangaBackground .label {
+    border-color: #00008B;
+}
+.mangaBackground .label .span {
+    background: #00008B;
+}
