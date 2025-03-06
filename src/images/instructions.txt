@@ -2,4 +2,6 @@ Have two images in this folder, either:
 
 1) Name one image anime (jpg file format), and name the other manga (png file format)
 
+or
+
 2) change the urls in styles.css to suit your situation
