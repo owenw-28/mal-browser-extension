@@ -9,6 +9,10 @@ This is my first experience bulding a browser extension and working with JavaScr
 3. Clicking the tooltip redirects to the MAL page for that anime.
 4. A toggle switch can be found in the options (Details -> Extension options) to make the extension prioritise searching for either the anime or the manga.
 
+#### In Action
+
+![](mal_demo.gif)
+
 #### Installation
 
 1. Clone this repository.
