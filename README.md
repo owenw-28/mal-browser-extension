@@ -13,6 +13,11 @@ This is my first experience bulding a browser extension and working with JavaScr
 
 ![](mal_demo.gif)
 
+Images Used (Thank you to the respective makers):
+
+Anime: 
+Manga: https://www.reddit.com/r/wallpaper/comments/18zaoe1/updated_manga_page_background_8k_7680x4320/?rdt=54699
+
 #### Installation
 
 1. Clone this repository.
