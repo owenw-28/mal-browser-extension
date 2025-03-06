@@ -7,7 +7,7 @@ This is my first experience bulding a browser extension and working with JavaScr
 1. Highlight an anime or manga title on any webpage.
 2. If a match is found, it retrieves the synopsis, rating and image from MAL and displays them on a tooltip.
 3. Clicking the tooltip redirects to the MAL page for that anime.
-4. A toggle switch can be found in the settings to make the extension prioritise searching for either the anime or the manga.
+4. A toggle switch can be found in the options (Details -> Extension options) to make the extension prioritise searching for either the anime or the manga.
 
 #### Installation
 
