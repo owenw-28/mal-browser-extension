@@ -1,22 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const radioButtons = document.querySelectorAll('input[name="searchType"]');
+    const checkbox = document.querySelector(".label .checkbox");
 
-    // Load saved preference
     chrome.storage.sync.get("searchType", (data) => {
-        if (data.searchType) {
-            document.querySelector(`input[value="${data.searchType}"]`).checked = true;
-            console.log("Loaded search type preference:", data.searchType);
+        if (data.searchType === "manga") {
+            document.body.classList.add("mangaBackground");
+            checkbox.checked = true;
+            console.log("Loaded search type preference: manga");
         } else {
-            console.log("No search type preference found, defaulting to 'anime'.");
+            document.body.classList.remove("mangaBackground");
+            checkbox.checked = false;
+            console.log("Loaded search type preference: anime");
         }
     });
 
-    // Save new selection
-    radioButtons.forEach((radio) => {
-        radio.addEventListener("change", function () {
-            chrome.storage.sync.set({ searchType: this.value }, () => {
-                console.log("Search type set to:", this.value);
+    checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+            document.body.classList.add("mangaBackground");
+            chrome.storage.sync.set({ searchType: "manga" }, () => {
+                console.log("Search type set to: manga");
             });
-        });
+        } else {
+            document.body.classList.remove("mangaBackground");
+            chrome.storage.sync.set({ searchType: "anime" }, () => {
+                console.log("Search type set to: anime");
+            });
+        }
     });
 });
