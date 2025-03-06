@@ -1,6 +1,5 @@
 const CLIENT_ID = ""; // Replace with your MAL API key (can be obtained from https://myanimelist.net/apiconfig, for more info go to https://myanimelist.net/forum/?topicid=1973141)
 
-// Function to get the search type from chrome.storage.sync
 function getSearchType() {
     return new Promise((resolve, reject) => {
         chrome.storage.sync.get("searchType", (data) => {
@@ -24,7 +23,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             const animeUrl = `https://api.myanimelist.net/v2/anime?q=${encodeURIComponent(title)}&limit=1&fields=id,title,main_picture,synopsis,mean,media_type`;
             const mangaUrl = `https://api.myanimelist.net/v2/manga?q=${encodeURIComponent(title)}&limit=1&fields=id,title,main_picture,synopsis,mean`;
 
-            // Function to fetch anime
             const fetchAnime = () => {
                 return fetch(animeUrl, { headers: { "X-MAL-CLIENT-ID": CLIENT_ID } })
                     .then(response => response.ok ? response.json() : Promise.reject("Anime not found"))
@@ -32,7 +30,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                         if (data.data?.length > 0) {
                             const anime = data.data[0];
 
-                            // Skip if media type is "music"
                             if (anime.node.media_type === "music") {
                                 console.log(`"${title}" is a music-type anime, skipping.`);
                                 return Promise.reject("Music-type anime skipped.");
@@ -46,7 +43,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     });
             };
 
-            // Function to fetch manga
             const fetchManga = () => {
                 return fetch(mangaUrl, { headers: { "X-MAL-CLIENT-ID": CLIENT_ID } })
                     .then(response => response.ok ? response.json() : Promise.reject("Manga not found"))
@@ -60,7 +56,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     });
             };
 
-            // Try fetching based on the user's search preference
             console.log(`Fetching ${searchType} for title: "${title}"`);
             if (searchType === "anime") {
                 fetchAnime()
@@ -77,6 +72,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             sendResponse({ error: error.message });
         });
 
-        return true; // Required for async response
+        return true; 
     }
 });
