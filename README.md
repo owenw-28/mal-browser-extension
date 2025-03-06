@@ -1,6 +1,6 @@
 # MyAnimelist Search Browser Extension
 
-This is my first experience bulding a browser extension and working with JavaScript. The main goal was to help me learn JavaScript fundamentals and Chrome extension development.
+This is my first experience building a browser extension and working with JavaScript. The main goal was to help me learn JavaScript fundamentals and Chrome extension development.
 
 #### How It Works
 
