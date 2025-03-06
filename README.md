@@ -32,6 +32,6 @@ Requires a MAL API key (which can be obtained from https://myanimelist.net/apico
 
 #### Limitations
 
-- Will return the closest corresponding anime/manga title for any input, so highlighting random words may yield a result
+- Will return the closest corresponding anime/manga title for any input (less than 9 words), so highlighting random words may yield a result
 - Sometimes will return an anime you won't expect (another anime in the same series or the completely wrong anime)
 
