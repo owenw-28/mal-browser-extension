@@ -3,7 +3,8 @@ let selectionTimeout = null;
 let tooltipImage = null;
 let tooltipText = null;
 
-function createTooltips() {
+// this ugly method was used as I couldn't properly format the image and writing the way I wanted with one tooltip
+function createTooltips() {   
     tooltipImage = document.createElement("div");
     tooltipImage.id = "mal-tooltip-image";
     tooltipImage.style.position = "absolute";
