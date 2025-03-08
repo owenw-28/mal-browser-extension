@@ -31,8 +31,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                             const anime = data.data[0];
 
                             if (anime.node.media_type === "music") {
-                                console.log(`"${title}" is a music-type anime, skipping.`);
-                                return Promise.reject("Music-type anime skipped.");
+                                return Promise.reject("anime skipped.");
                             }
 
                             console.log("MAL API Response Data (Anime):", anime);
