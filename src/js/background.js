@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                             const anime = data.data[0];
 
                             if (anime.node.media_type === "music") {   
-                                return Promise.reject("music media type skipped.");
+                                return Promise.reject("Music media type skipped.");
                             }
 
                             console.log("MAL API Response Data (Anime):", anime);
@@ -48,7 +48,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     .then(mangaData => {
                         if (mangaData?.data?.length > 0) {
                             console.log("MAL API Response Data (Manga):", mangaData);
-                            sendResponse({ data: mangaData.data[0], isAnime: false, isManga: true });
+                            sendResponse({ data: mangaData.data[0], isAnime: false});
                         } else {
                             return Promise.reject("No manga found.");
                         }
