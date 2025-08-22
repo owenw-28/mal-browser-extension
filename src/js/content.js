@@ -3,77 +3,56 @@ let selectionTimeout = null;
 let tooltipImage = null;
 let tooltipText = null;
 
-// this ugly method was used as I couldn't properly format the image and writing the way I wanted with one tooltip
-function createTooltips() {   
+function createTooltips() {
     tooltipImage = document.createElement("div");
-    tooltipImage.id = "mal-tooltip-image";
+    tooltipImage.id = "mal-tooltip";
     tooltipImage.style.position = "absolute";
-    tooltipImage.style.background = "#222";
+    tooltipImage.style.background = "#2e51a2";
     tooltipImage.style.color = "#fff";
     tooltipImage.style.padding = "10px";
     tooltipImage.style.borderRadius = "5px";
     tooltipImage.style.fontSize = "14px";
     tooltipImage.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.2)";
     tooltipImage.style.display = "none";
+    tooltipImage.style.width = "400px";
     tooltipImage.style.height = "141px";
     tooltipImage.style.zIndex = "1000";
     tooltipImage.style.cursor = "pointer";
     tooltipImage.style.whiteSpace = "normal";
+    tooltipImage.style.overflow = "hidden";
+    tooltipImage.style.textOverflow = "ellipsis";
+    tooltipImage.style.display = "none";
     document.body.appendChild(tooltipImage);
-
-    tooltipText = document.createElement("div");
-    tooltipText.id = "mal-tooltip-text";
-    tooltipText.style.position = "absolute";
-    tooltipText.style.background = "#222";
-    tooltipText.style.color = "#fff";
-    tooltipText.style.padding = "10px";
-    tooltipText.style.borderRadius = "5px";
-    tooltipText.style.fontSize = "14px";
-    tooltipText.style.width = "300px"; 
-    tooltipText.style.height = "141px"; 
-    tooltipText.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.2)";
-    tooltipText.style.display = "none";
-    tooltipText.style.zIndex = "1000";
-    tooltipText.style.whiteSpace = "normal";
-    tooltipText.style.cursor = "pointer";
-    tooltipText.style.overflow = "hidden"; 
-    tooltipText.style.textOverflow = "ellipsis"; 
-    document.body.appendChild(tooltipText);
+    tooltipText = tooltipImage; 
 }
 
 function showTooltips(response, selection) {
     if (!tooltipImage || !tooltipText) createTooltips();
 
-    anime = response.data.node;
-
+    const anime = response.data.node;
     console.log("Showing tooltips for anime:", anime);
-
     const imageUrl = anime.main_picture ? anime.main_picture.large : "";
-
     let malUrl = `https://myanimelist.net/anime/${anime.id}`;
-
-
     if (!response.isAnime) {
         malUrl = `https://myanimelist.net/manga/${anime.id}`;
     }
 
-    tooltipImage.innerHTML = `
-        ${imageUrl ? `<img src="${imageUrl}" width="100">` : ""}
-    `;
-    tooltipText.innerHTML = `
-        <div>
-            <strong>${anime.title}</strong><br>
-            ⭐ ${anime.mean || "N/A"}<br>
-            ${anime.synopsis ? anime.synopsis.slice(0, 200) + "..." : "No synopsis available"}
-        </div>
-    `;
+        const tooltipHeight = 140; 
+        const imageHeight = 135;   
+        const imageWidth = 100;     
+        tooltipImage.innerHTML = `
+            <div style="display: flex; align-items: center; height: ${tooltipHeight}px;">
+                ${imageUrl ? `<img src='${imageUrl}' style='height: ${imageHeight}px; width: ${imageWidth}px; object-fit: cover; border-radius: 4px; margin-right: 16px;'>` : ""}
+                <div style='flex: 1; overflow: hidden; padding-top:32px;'>
+                    <strong>${anime.title}</strong><br>
+                    ⭐ ${anime.mean || "N/A"}<br>
+                    <div style='max-height: ${imageHeight}px; overflow-y: auto; padding-right: 8px; padding-bottom: 4px;'>${anime.synopsis ? anime.synopsis : "No synopsis available"}</div>
+                </div>
+            </div>
+        `;
     tooltipImage.style.display = "block";
-    tooltipText.style.display = "block";
 
     tooltipImage.onclick = () => {
-        window.open(malUrl, "_blank");
-    };
-    tooltipText.onclick = () => {
         window.open(malUrl, "_blank");
     };
 
@@ -81,8 +60,6 @@ function showTooltips(response, selection) {
     const rect = range.getBoundingClientRect();
     tooltipImage.style.left = `${rect.left + window.scrollX}px`;
     tooltipImage.style.top = `${rect.top + window.scrollY - tooltipImage.offsetHeight}px`;
-    tooltipText.style.left = `${rect.left + window.scrollX + tooltipImage.offsetWidth}px`; 
-    tooltipText.style.top = `${rect.top + window.scrollY - tooltipText.offsetHeight}px`;
 }
 
 function fetchMALData(title, selection) {
